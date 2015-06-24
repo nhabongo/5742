@@ -1,0 +1,49 @@
+\chapter{Introdução e Contexto}
+
+A capacidade de armazenar dados em meios eletrônicos cresce exponencialmente desde os primórdios da computação sustentada pelos avanços em pesquisa e tecnologia. 
+
+\par
+Os programas de computador, valendo-se desses avanços, também evoluíram e passaram a gerar e manipular um volume cada vez maior de dados que, para serem processados e analisados de modo rápido, eficiente e consistente, passaram a ser armazenados em sistemas especializados denominados Bancos de Dados. 
+
+\par
+Os Sistemas de Bancos de Dados viabilizaram a manutenção do histórico dos dados, que além de armazenar os dados e seus respectivos processos de captação, permitem realizar análises estatísticas poderosas como, por exemplo, a detecção de anomalias, agrupamento e predição.
+
+\par
+Em geral quanto mais dados se obtém do ciclo de vida de um determinado processo mais precisas serão as análises realizadas sobre os mesmos, porém com um tempo de processamento maior. Esse tempo consumido para a realização das análises de dados muitas vezes é crítico para se tomar uma decisão. O tempo de processamento está diretamente relacionado a estrutura de armazenamento e de relacionamentos dos dados dos sistemas computacionais.
+
+\par 
+Um sistema computacional cuja principal finalidade é a analise de dados é denominado sistema analítico, enquanto que um sistema que insere, atualiza, remove, ou seja, modifica constantemente e pontualmente os dados é denominado sistema transacional. Os sistemas analíticos têm como principal característica a consulta a uma grande quantidade de dados com a finalidade de sintetizar ou descobrir informações. 
+
+\par
+Se um sistema analítico concorre com um sistema transacional ao acessar os dados, o banco pode sobrecarregar e comprometer a eficiência de ambos os sistemas. Os efeitos colaterais dessa concorrência podem por um lado pode causar a indisponibilidade do sistema transacional e por outro a causar uma lentidão indesejada do sistema analítico. A replicação dos dados em vários níveis é a solução para evitar o problema da concorrência entre o ambiente analítico e o transacional. Essa replicação com alternativas para novas estruturas, tratamento, integração e otimização de acesso aos dados é denominada Data Warehouse.
+
+\par
+Para atender a uma importante demanda de análise de dados da Universidade de São Paulo foi criado o projeto denominado DataUSP-PosGrad. Esse projeto propôs a criação de um Data Warehouse com dados de todos os programas da Pós-Graduação e um conjunto de serviços analíticos com o propósito de gerar relatórios sob demanda com análises de tais dados. Esses relatórios incluem análises estatísticas dos programas, áreas e pessoas ligadas à Pós-Graduação, como por exemplo, o número de titulações em uma área, o tempo médio de titulação em um programa, o número de teses dos docentes em uma área ou programa além de muitas outras, publicações e citações.
+
+\par
+O principal objetivo deste Trabalho de Conclusão de Curso é o de descrever os principais desafios encontrados e as soluções encontradas para o desenvolvimento de serviços analíticos do Projeto DataUSP-PosGrad.
+
+\section{Problema e Hipótese de solução}
+
+% Hipótese para solucionar o problema de implementação de serviços analíticos (ou seja o uso do REstfull)
+
+O DataUSP-PósGrad precisa ser um sistema escalável, no qual novas funcionalidades podem ser agregadas de maneira simples,
+rápida e sem comprometer o seu desempenho. Sua arquitetura deve ser leve e robusta, capaz de manipular um grande volume de dados eficientemente e devolver os resultados ao usuário no menor intervalo de tempo possível, além de ser capaz de fornecer dados a outros sistemas computacionais autonomamente utilizando uma interface web. Para atender a esses requisitos, uma possível solução é construir um conjunto de Web Services sobre a arquitetura RESTful.
+
+\section{Evidências da solução RESTful}
+
+A arquitetura REST separa a implementação de um sistema em cliente e servidor. Essa separação aumenta a escalabilidade do servidor, já que a implementação dos serviços é transparente ao usuário e não mantém estado entre requisições, o que também contribui para um melhor desempenho do sistema como um todo e facilita a incorporação de novos recursos. A interface de acesso aos serviços é homogênea e os recursos disponibilizados são acessados por identificadores únicos (endereços de rede). A arquitetura REST também utiliza o HTTP como protocolo de acesso e não apenas para transporte de dados. Essa interface de acesso utilizará um subconjunto dos métodos do HTTP (GET, POST, PUT, DELETE, etc) para disponibilizar os recursos, simplificando a interação cliente-servidor.
+
+\par
+Um Serviço Web, de forma resumida, é uma aplicação que disponibiliza seus recursos por meio de um endereço de rede. Assim qualquer usuário do serviço, seja ele humano ou um programa de computador que conheça o protocolo de comunicação, pode interagir com o mesmo, consumindo seus recursos por meio de troca de mensagens de texto estruturadas. Um Web Service que implementa os conceitos da arquitetura REST sobre o protocolo HTTP é chamado RESTful Web Service.
+
+
+\section{A arquitetura REST no DataUSP-PósGrad}
+
+A construção do DataUSP-PósGrad sobre a arquitetura REST permite que novas funcionalidades ( em geral a geração de novos relatórios ) sejam implementadas de modo simples e pragmático. O uso do HTTP como protocolo de acesso garante a uniformidade da interface de acesso aos seus recursos, e a aplicação cliente pode ser desenvolvida em diferentes plataformas e sistemas operacionais. Como exemplo de implementação dessa aplicação cliente, pode-se destacar: o uso de  dispositivos móveis ou navegadores de internet garantindo ao sistema uma maior portabilidade a abrangência de uso. Além disso, por haver uma divisão específica entre cliente e servidor parte do processamento pode ser feito do lado cliente, como por exemplo manipular os dados para facilitar a visualização por meio de gráficos ou tabelas, aliviando a carga do servidor e melhorando o desempenho assim como a fluidez geral do sistema.
+
+
+\section{Descrição dos próximos capítulos}
+
+No capítulo~\ref{ch:2} serão apresentados os fundamentos e conceitos tecnológicos utilizados, tanto na elaboração quanto na construção do sistema DataUSP-PósGrad. O capítulo~\ref{ch:3} descreve as atividades realizadas e as metodologias utilizadas no decorrer do projeto. Já no capítulo~\ref{ch:4} são apresentados os resultados obtidos, com o lançamento oficial do sistema, e os testes de desempenho. No capítulo~\ref{ch:5} constam as conclusões e há uma descrição subjetiva do trabalho no apêncice~\ref{app:a}.   
+

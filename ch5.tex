@@ -1,0 +1,17 @@
+\chapter{Conclusões}
+\label{ch:5}
+
+Para se compreender a situação atual de uma instituição do tamanho da USP, é fundamental fazer uma análise
+abrangente e precisa dos dados acumulados ao longo dos anos. É nesse contexto que surgiu o DataUSP-PósGrad como sistema analítico da pós-graduação da Universidade de São Paulo.
+
+\par Os dois principais objetivos desse trabalho foram a criação de um Data Warehouse e um sistema baseado em Serviços Web para gerar relatórios sob demanda referentes aos dados da pós-graduação da USP. 
+
+\par O Data Warehouse foi construído com dados de fontes internas, no caso dos dados dos programas, áreas e pessoas, e também de fontes externas, para se obter dados da produção acadêmica dos docentes e seu impacto na comunidade científica. As fontes internas são os dados coletados pelos demais sistemas administrativos da USP, por exemplo o sistema Janus, enquanto que as principais fontes externas são as páginas web do Google Scholar e também do Scopus.
+
+\par Seguindo os conceitos da arquitetura REST, o sistema foi dividido em duas componentes: o Servidor de Recursos e a Interface Web. O Servidor de Recursos, que é propriamente o Serviço Web, foi implementado em Java por meio da biblioteca Jersey. Já a Interface Web, responsável por consumir os dados do Servidor de Recursos e construir os relatórios, foi implementada em JavaScript, por meio das bibliotecas JQuery e Fusion Charts, e HTML5. Além disso um sistema auxiliar escrito em Python, o Web Crawler, foi construído para obter informações da produção intelectual dos docentes da USP nas fontes de dados externas, além de integrá-las ao Data Warehouse.
+
+\par Embora o DataUSP-PósGrad utilize o banco de dados Sybase ASE, como praticamente todos os sistemas da USP, utilizar uma arquitetura orientada a serviços provou-se bastante adequada para o ambiente USP. Desde que não haja um gargalo no banco de dados, esse modelo arquitetural garante alta escalabilidade de recursos computacionais e na implementação de novas funcionalidades. Facilita a comunicação e a integração com outros futuros Serviços Web e, ainda, definine um novo paradigma para se construir sistemas administrativos dentro da Universidade.
+
+\par Os dados fornecidos pelo DataUSP-PósGrad são essenciais para se conhecer a evolução dos programas da pós-graduação, assim como para detectar tendências e manter o padrão de excelência dos cursos. Conseguir esses dados em tempo real é indispensável para agilizar a tomada de decisões e corrigir eventuais problemas, ou ainda entender alguma anomalia.
+
+\par Com o sucesso do DataUSP-PósGrad a tendência é que apareçam novos sistemas na USP orientados a serviços, e até mesmo a modernização de sistemas já existentes, aumentando o foco nos dados e de como eles representam o estado dos processos administrativos.

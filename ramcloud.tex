@@ -1,0 +1,43 @@
+\documentclass[12pt,a4paper]{report}
+\usepackage{minted}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage[hyperfootnotes=false]{hyperref}
+\usepackage{fancyvrb}
+\usepackage{float}
+\usepackage[bottom]{footmisc}
+\usepackage{subfig}
+
+\setlength{\parindent}{15pt}
+\setlength{\parskip}{1.5ex}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+\begin{document}
+
+\include{capa}
+
+\begin{abstract}
+Desde o início dos anos 80 o disco magnético, também conhecido por disco rígido, hard disk ou HD, é o
+principal meio para armazenamento de dados em massa. Embora sua capacidade de armazemento tenha aumentado exponencialmente
+ao longo dos anos, acompanhado a evolução dos outro componentes de um PC, seu tempo de acesso e sua taxa de tranferência
+de dados pouco evoluiram. Com a crescente demanda por serviços que acessam grandes volumes de dados e a necessidade de se exibir
+resultados em tempo real, assim como a queda no preço da memória DRAM, surge a necesidade de se manter cada vez mais dados em memória
+volátil. Nesse cenário, o Projeto RAMCloud propõe um sistema de armazenamento de dados inteiramente em memória DRAM, garantido durabilidade,
+disponibilidade e baixissima latência de acesso aos dados.
+\end{abstract}
+
+\tableofcontents
+
+\include{ch1}
+\include{ch2}
+\include{ch3}
+\include{ch4}
+\include{ch5}
+
+\addcontentsline{toc}{chapter}{\numberline{}Bibliografia}
+\include{biblio}
+\appendix
+\include{parte_subjetiva}
+\end{document}

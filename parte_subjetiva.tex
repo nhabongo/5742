@@ -1,0 +1,53 @@
+\chapter{O trabalho e o curso}
+\label{app:a}
+
+Nesse capítulo irei descrever minha experiência pessoal com o projeto DataUSP-PósGrad, descrevendo as dificuldades encontradas
+, a relevância do conteúdo adquirido no curso para a realização do trabalho e os trabalhos futuros.
+
+\section{Desafios}
+
+O projeto DataUSP-PósGrad iniciou-se em janeiro de 2013 quando o Prof. Dr. João Eduardo Ferreira (também conhecido por Jef) convidou-me para fazer um estágio na Pró-Reitoria de pós-graduação da USP, onde ele é o assistente de informática.
+
+\par O grande desfio inicial do projeto foi construir o \emph{Data Warehouse}~\ref{sec:dw},entender os dados e seus relacionamentos. Foi a primeira dificuldade encontrada.
+
+\par Tradicionalmente os softwares desenvolvidos na USP são escritos em Java, que embora seja uma linguagem bastante
+difundida e utilizada, eu não a conhecia profundamente. Além disso tive que aprender em detalhes o funcionamento de um \emph{Serviço Web} e a sua implementação em Java (essa etapa custou o mês de fevereiro praticamente inteiro).
+
+\par Com o esqueleto do projeto pronto e funcionando com algum relatórios, chegou o momento de integrá-lo ao sistema
+de login único da USP, onde uma única senha é utilizada para acessar todos os sistemas a que um usuário tenha acesso. Devido à arquitetura cliente servidor do DataUSP-PósGrad, apenas a interface web teve que ser integrada, o que já deu bastante trabalho mesmo com o suporte do Departamento de Informática da USP. Para fazer autenticação no servidor tive que estudar a fundo o funcionamento do Jersey~\ref{sec:jersey} e o funcionamento de suas classes de filtro.
+
+\par Para colocar o sistema em produção foi preciso configurar o ambiente juntamente com a equipe do Departamento de Informática da USP, pois a distribuição de Linux usada por eles (no caso o Red Hat) não atendia a todas as dependências do projeto, a maioria por causa dos scripts python (Web Crawler) dos relatórios de citações.
+
+\par Depois que a primeira versão do DataUSP-PósGrad foi ao ar no dia 5 de junho de 2013, o Prof. Jef teve a ideia de fazer um banco de dados de citações~\ref{sec:cita} da produção intelectual dos pesquisadores da USP. Para isso seria preciso obter os dados do Google Scholar e também do Scopus. Isso seria feito com a técnica de \emph{Web Crawling}. 
+
+\par Obter os dados do Google parecia impossível a princípio, já que aparecia um \emph{captha}, imagem com caracteres a serem digitados, em um intervalo curto de requisições (precisava obter os dados de mais de 5000 pesquisadores), e não pretendíamos violar esse sistema de verificação. Isso se resolveu quando o Jef entrou em contato com o Google, que muito atenciosamente disponibilizou uma pagina com todos os pesquisadores da USP cadastrados, e assim não precisaríamos mais buscar os nomes dos docentes individualmente, embora o problema de associar os nomes encontrados aos nomes no banco de dados persistisse.
+
+\par A navegação no site do Scopus foi relativamente mais complicada. O site gera identificadores temporários para cada requisição e, para navegar de forma autônoma, foi preciso fazer a engenharia reversa do processo (foi o mês de julho e parte de agosto). Depois de entender o mecanismo das verificações foi feita a primeira tentativa de se obter os dados para todos os mais de 5000 pesquisadores da USP. Como era necessário dar um intervalo aleatório de tempo (de 1 a 3 segundos) entre cada requisição (para se obter os dados de cada pesquisador são 7 requisições), o processo levou cerca de 15 horas para completar. Já pensando em como manter essa base de dados atualizada, o Web Crawler foi paralelizado e executado novamente, mas agora com 100 threads. Resultado: obtive os mesmos dados em menos de uma hora! Mas como toda ação gera uma reação, o Scopus bloqueou o acesso para o endereço IP da Pró-Reitoria (e também um dos endereços IP do IME) e a Capes enviou um ofício pedindo esclarecimentos (felizmente o caso foi resolvido sem prejuízo ao DataUSP-PósGrad)   
+
+\section{disciplinas relevantes}
+
+As algumas disciplinas do bacharelado em ciência da computação foram fundamentais para que eu pudesse
+compreender o construir o DataUSP-PósGrad (mesmo algumas que não foram citadas contribuíram de forma indireta, por exemplo as matérias de base que ajudam a desenvolver o raciocínio lógico e introduzem os princípios da computação). São elas:
+
+\subsection{Introdução a Bancos de dados}
+Aqui eu aprendi o funcionamento de um banco de dados relacional e como usar a linguagem SQL para interagir com o mesmo.
+Apesar de ser uma matéria introdutória achei interessante o foco voltado a lógica e não a linguagem de consulta em si. Não esperava menos do curso.
+
+\subsection{Engenharia de Software}
+Essa disciplina me pareceu um tanto superficial a principio mas foi aqui que tive o primeiro contato com a linguagem de programação Java. Durante o meu estágio na Pró-Reitoria pude perceber o quão importante é saber trabalhar em equipe e aplicar os conceitos e as boas práticas de programação adquiridos na disciplina.
+
+\subsection{Estrutura de Dados}
+No projeto inúmeras vezes precisei associar dados oriundos de bases distintas antes sumarizá-los. O uso de árvores rubro-negras (TreeMap em Java) para inserir e buscar os dados da maneira mais eficiente o possível contribuiu para a eficiência de alguns métodos. Outras estruturas como os vetores associativos (tabelas de Hash) também foram muito utilizadas no projeto.
+
+\subsection{Análise de Algoritmos}
+
+Em Java muitas estruturas de dados e algoritmos clássicos já estão implementadas em forma de bibliotecas. Saber compará-los assintoticamente foi decisivo para buscar o melhor desempenho possível do sistema.
+
+\section{Trabalhos futuros}
+Pretendo continuar atuando na área de Web Services estudando mais a fundo não só a tecnologia mas também os processos de modelagem de negócio, como as redes de Petri, álgebras de processos e também a abordagem do Prof. Jef chamada \emph{WED-flow}\footnote{WED-flow - \texttt{http://data.ime.usp.br/wedflow}}. 
+
+\section{Agradecimentos}
+
+Gostaria de agradecer primeiramente ao Prof. Dr. João Eduardo Ferreira pela oportunidade de participar do projeto DataUSP-PósGrad, e também por sua paciência e por acreditar em mim. Agradeço também a toda a equipe de informática da Pró-reitoria de Pós-graduação, sob orientação do Marino Hilário Catarino e com a ajuda do Felipe Augusto Araujo Dias, Eduardo Dias Filho e do Rafael G. Rossi na implementação do sistema.
+\par Contamos também com amplo suporte do Departamento de Informática da USP (agora conhecido por DTI) sob a coordenação do Prof. Dr. Luiz Natal Rossi e Luis Carlos Moreira Gomes, e gerência de Silvio Fernandes de Paula.
+\par Finalmente agradeço ao Pró-reitor de Pós-graduação Prof. Dr. Vahan Agopyan pela oportunidade e apoio ao desenvolvimento do DataUSP-PósGrad. 
