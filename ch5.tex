@@ -1,17 +1,22 @@
 \chapter{Conclusões}
 \label{ch:5}
 
-Para se compreender a situação atual de uma instituição do tamanho da USP, é fundamental fazer uma análise
-abrangente e precisa dos dados acumulados ao longo dos anos. É nesse contexto que surgiu o DataUSP-PósGrad como sistema analítico da pós-graduação da Universidade de São Paulo.
+Por mais que o projeto RAMCloud ja tenha uma versão que os desenvolvedores dizem ser utilizável, algumas limitações, deficiencias e a falta de uma aplicação que
+realmente possa tirar vantagem dessa arquitetura podem acabar retardando ou mesmo inviabilizando sua utilização atualmente. O sistema em geral depende fortemente
+do desempenho da rede de intercomunicação, nada menos do que a técnologia de ponta que existe hoje, o que pode implicar em alto custo de implantação e eventuais
+falhas de hardware, software ou mesmo de projeto dessas tecnologias. Além disso, para que o RAMCloud funcione como previsto, todos os servidores precisam estar
+no mesmo datacenter uma vez que está implicito que os servidores podem se comunicar com baixa latência. 
+\par
+Do ponto de vista de armazenamento, para permitir que o sistema se recupere de falhas em menos de dois segundos, cada servidor de backup não pode armazenar mais 
+do que cerca de 500MB de log, ou seja, em um cluster com 10 nós cada servidor master pode armazenar no máximo 5GB de DRAM. Além disso, o modelo de dados chave-valor adotado é bem simples e eficiente para acesso, mas aplicações que necessitam de um modelo de dados mais estruturado, com índices secundários e transações de multiplos objetos (ou mesmo um modelo ACID) teriam que ser totalmente reescritas para funcionar no RAMCloud. Falta também algum sistema de proteção de acesso aos dados, atualmente
+qualquer cliente pode modificar qualquer dado armazenado.
+\par
+Talvez ainda não exista um nicho específico para o projeto RAMCloud embora não deixe de ser um projeto interessante e bastante promissor, basta analisar o mercado de software para chegar a conclusão de que existe uma demanda cada vez maior, por parte das aplicações web, para manter dados em memória RAM. Técnologias oriundas da memcomputação, principalmente os memristores, podem viabilizar a criação de um novo tipo de memória que agregue baixa latência, velocidade superior as DRAM e capacidade de um disco rigido, tornando não só o RAMCloud como diversas técnologias atuais obsoletas.
 
-\par Os dois principais objetivos desse trabalho foram a criação de um Data Warehouse e um sistema baseado em Serviços Web para gerar relatórios sob demanda referentes aos dados da pós-graduação da USP. 
+\vfill
+\begin{flushright}
+\textit{One machine can do the work of fifty ordinary men. \\
+No machine can do the work of one extraordinary man.}\\
+--Elbert Hubbard
 
-\par O Data Warehouse foi construído com dados de fontes internas, no caso dos dados dos programas, áreas e pessoas, e também de fontes externas, para se obter dados da produção acadêmica dos docentes e seu impacto na comunidade científica. As fontes internas são os dados coletados pelos demais sistemas administrativos da USP, por exemplo o sistema Janus, enquanto que as principais fontes externas são as páginas web do Google Scholar e também do Scopus.
-
-\par Seguindo os conceitos da arquitetura REST, o sistema foi dividido em duas componentes: o Servidor de Recursos e a Interface Web. O Servidor de Recursos, que é propriamente o Serviço Web, foi implementado em Java por meio da biblioteca Jersey. Já a Interface Web, responsável por consumir os dados do Servidor de Recursos e construir os relatórios, foi implementada em JavaScript, por meio das bibliotecas JQuery e Fusion Charts, e HTML5. Além disso um sistema auxiliar escrito em Python, o Web Crawler, foi construído para obter informações da produção intelectual dos docentes da USP nas fontes de dados externas, além de integrá-las ao Data Warehouse.
-
-\par Embora o DataUSP-PósGrad utilize o banco de dados Sybase ASE, como praticamente todos os sistemas da USP, utilizar uma arquitetura orientada a serviços provou-se bastante adequada para o ambiente USP. Desde que não haja um gargalo no banco de dados, esse modelo arquitetural garante alta escalabilidade de recursos computacionais e na implementação de novas funcionalidades. Facilita a comunicação e a integração com outros futuros Serviços Web e, ainda, definine um novo paradigma para se construir sistemas administrativos dentro da Universidade.
-
-\par Os dados fornecidos pelo DataUSP-PósGrad são essenciais para se conhecer a evolução dos programas da pós-graduação, assim como para detectar tendências e manter o padrão de excelência dos cursos. Conseguir esses dados em tempo real é indispensável para agilizar a tomada de decisões e corrigir eventuais problemas, ou ainda entender alguma anomalia.
-
-\par Com o sucesso do DataUSP-PósGrad a tendência é que apareçam novos sistemas na USP orientados a serviços, e até mesmo a modernização de sistemas já existentes, aumentando o foco nos dados e de como eles representam o estado dos processos administrativos.
+\end{flushright}
